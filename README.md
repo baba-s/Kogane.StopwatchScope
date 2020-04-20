@@ -11,7 +11,7 @@ StopwatchScope.OnStart += name =>
 };
 StopwatchScope.OnComplete += ( name, elapsed ) =>
 {
-    Debug.Log( $"[Stopwatch] {name}: {elapsed.TotalSeconds:0.00}" );
+    Debug.Log( $"[Stopwatch] {name}    {elapsed.TotalSeconds:0.00} 秒" );
 };
 
 using ( new StopwatchScope( "【ここにタグ名】" ) )
