@@ -11,18 +11,20 @@ namespace UniStopwatchScope
 		//==============================================================================
 		// デリゲート
 		//==============================================================================
+		public delegate void OnStartCallback( string name );
+
 		public delegate void OnCompleteCallback( string name, TimeSpan elapsed );
 
 		//==============================================================================
 		// 変数(readonly)
 		//==============================================================================
-		private readonly string             m_name;
-		private readonly Stopwatch          m_stopwatch = new Stopwatch();
-		private readonly OnCompleteCallback m_onComplete;
+		private readonly string    m_name;
+		private readonly Stopwatch m_stopwatch = new Stopwatch();
 
 		//==============================================================================
 		// イベント(static)
 		//==============================================================================
+		public static event OnStartCallback    OnStart;
 		public static event OnCompleteCallback OnComplete;
 
 		//==============================================================================
@@ -31,19 +33,11 @@ namespace UniStopwatchScope
 		/// <summary>
 		/// 計測を開始します
 		/// </summary>
-		public StopwatchScope( string name, OnCompleteCallback onComplete )
+		public StopwatchScope( string name )
 		{
-			m_name       = name;
-			m_onComplete = onComplete;
-
+			m_name = name;
 			m_stopwatch.Start();
-		}
-
-		/// <summary>
-		/// 計測を開始します
-		/// </summary>
-		public StopwatchScope( string name ) : this( name, null )
-		{
+			OnStart?.Invoke( name );
 		}
 
 		/// <summary>
@@ -53,7 +47,6 @@ namespace UniStopwatchScope
 		{
 			m_stopwatch.Stop();
 			var elapsed = m_stopwatch.Elapsed;
-			m_onComplete?.Invoke( m_name, elapsed );
 			OnComplete?.Invoke( m_name, elapsed );
 		}
 	}
