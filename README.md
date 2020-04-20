@@ -7,11 +7,11 @@
 ```cs
 StopwatchScope.OnStart += name =>
 {
-    Debug.Log( $"[Stopwatch] {name}" );
+    Debug.Log( $"[Stopwatch]「{name}」開始" );
 };
 StopwatchScope.OnComplete += ( name, elapsed ) =>
 {
-    Debug.Log( $"[Stopwatch] {name}    {elapsed.TotalSeconds:0.00} 秒" );
+    Debug.Log( $"[Stopwatch]「{name}」終了    {elapsed.TotalSeconds:0.00} 秒" );
 };
 
 using ( new StopwatchScope( "【ここにタグ名】" ) )
