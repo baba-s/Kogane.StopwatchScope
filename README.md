@@ -1,6 +1,6 @@
-# Uni Stopwatch Scope
+# Kogane Stopwatch Scope
 
-経過時間を計測するクラス  
+経過時間を計測するクラス
 
 ## 使用例
 
