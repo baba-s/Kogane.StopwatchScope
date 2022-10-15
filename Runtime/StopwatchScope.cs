@@ -19,7 +19,7 @@ namespace Kogane
         // 変数(readonly)
         //==============================================================================
         private readonly string    m_name;
-        private readonly Stopwatch m_stopwatch = new Stopwatch();
+        private readonly Stopwatch m_stopwatch = new();
 
         //==============================================================================
         // イベント(static)
