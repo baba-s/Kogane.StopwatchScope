@@ -33,7 +33,7 @@ namespace Kogane
         /// <summary>
         /// 計測を開始します
         /// </summary>
-        public StopwatchScope( string name )
+        private StopwatchScope( string name )
         {
             m_name = name;
             m_stopwatch.Start();
@@ -48,6 +48,21 @@ namespace Kogane
             m_stopwatch.Stop();
             var elapsed = m_stopwatch.Elapsed;
             OnComplete?.Invoke( m_name, elapsed );
+        }
+
+        //==============================================================================
+        // 関数(static)
+        //==============================================================================
+        /// <summary>
+        /// 計測を開始します
+        /// </summary>
+        public static StopwatchScope StartNew( string name )
+        {
+#if KOGANE_DISABLE_STOPWATCH_SCOPE
+            return null;
+#else
+            return new StopwatchScope( name );
+#endif
         }
     }
 }
